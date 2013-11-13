@@ -1,0 +1,375 @@
+- Write a CV
+- test: try all emulators try
+  ++ QVGA      text to big landscape. Revers<i>
+  -- WVGA800   
+  -- WVGA854   
+  ++ HVGA      
+  ++ WQVGA400  
+  ++ WQVGA432  
+  ++ WXGA     
+- test: device my tab
+- test: device gill's tab
+- test: device my phone
+- test: device gill's phone
++ publish: promotional graphic 180w x 120h  3x2
++ publish: promotional text
++ publish: feature graphic 1024 x 500      
++ publish: improve description
+- publish: publish
+- set up www.krisapps.com
++ code: help text
+------------------------------------------------------
+- code: add rate instead of start a new game (and share buttons)
+- code: add www.krisapps.com URL
+- code: AI improvements
+- code: add US and Italian
+- code: WXGA larger board, pieces and richer layout     
+------------------------------------------------------
+  + comment out licensing for now
+  + 512x512 icon 260/288 * 512 = 462 => 480
+  + Licensing Verification Library
+    + install google apis
+    + add emulator instance
+    - Why doesn't license dialog go to marketplace properly
+    + What to do if buy option is rejected or fails?
+      Allow a few moves and then show dialog again?
+  + Register Merchant Account
+- release candidate bugs
+  ++ default pieces wood instead of plain
+  ++ show legal in menu wrong
+  ++ proguard not working
+  ++ signing problems
+     wizard OK
+       CERT.SF CERT.RSA working vs. REVERSI.SF REVERSI.RSA
+       MANIFEST.MF
+         created by 1.0 Android vs. 1.7.0 Oracle
+	 SHA1-Digest vs SHA-256-Digest
+     ant not OK
+     which version of java is eclipse using?
+  ++ move sdk and retry wizard
+  -+ sort out ant build - need this anyway
+  ++ losing game on blank screen - need to save game by serializing to a file
+     tried putting pointer to Board in Board instead of using Stack<Board> but serialization 
+     did not work
+  -+ nasty bitmap scaling bug
+- build
+  add image generation to ant build.xml
++ rotate problems
+  + undo
+  + still sometimes makes move but progress indicator starts up
+    could it be making move after onSaveInstance but before destruction?
++ debug AI
+  + score end game positions properly
+  + check recursive algorithm
+  + some randomness
++ UI Changes
+  - lilac board -40 hue
+  - legal transparency 64 to 32
+  + Create a going out of the door quit icon
+  + Add title and icon to all dialogs
+  + Are you sure you want to quit the present game?
++ change AI to a dialog with two sliders SeekBar
+- TODOs
+- help text
+  - better text
+    - Getting Started
+    - The Game of Reversi
+    - The Application
+    - make first section getting started
+    - second section should be short introduction with images
+    - third section should be more detail
+    - add colours
+    - maximum think time is 3s per level of difficulty
+    - images
+- testing, testing, testing
+- test on virtual devices
+  - QVGA landscape buttons
+  - WVGA800 visible artifacts in board
+    +apk size with 95% board jpegs and artifacts 1,032,648
+              with 100% no artifacts 1,779,726
+    + save as 600x600 pngs and then scale at 90% half the size 809,847 and much better
+                                             85%               707,727 but artifacts 
+  - examine all images for artifacts
+- Read articles on best practices
+- publishing
+  - proguard
+  - signing
+  - registering
+----------------------------------  
+- tidy up preferences and state
+  - undo not working after rotate
+- learn ant to build everything
+- optimizations
+- Define for user defined widgets res/values/attrs.xml
+- debug AI
+  - how to add some strategy? 
+    score end games +-300 and strategy moves +-100 or +-200
+    only make strategy moves early in the game
+    corner moves +-100 early in the game? Keep a move count
+    *** problems with comparisons with other moves
+  - add dialog option for the randomness
+  - change orientation during computer's move
++ test AI menu change
++ progress bar  
++ AI Randomness
+  no of possible moves
+  difference in scores
+  first finds are better
+
+  slightly  better good chance of replacing ~  difference
+            p(change) = 1 - (1 - k) / difference 
+  equal     small chance of replacing. earlier should be more likely
+            p(change) = k/n k = 0.8
+             
+  slightly  worse small chance of replacing inv~ difference
+  			p(change) = k/n/(difference+1)
+
+- AI Optimization
+  adding int dx, dy reduces time of willFlip 0.044 -> 0.020
+  willFlip 24.5%
+  otherPlayer 10.5%
+  flipPieces
+  isLegal
+  score
+- %i %s etc. in strings.xml
++ quit/new game dialog
++ background color depends on selected board
++ Play black or white
+  + reconcile with undo
+
++ Scripted GIMP to generate 
+  + pieces
+  + board
+  + icons
+  30 40 50 60 75 100
+   6  8 10 12 15 20
+   23 222 25 223 35 225
+   22235
+   120
++ option help
+  WebView
+  loadUrl("file:///android_asset/test.html"); 
+  Returning null
+  FrameLayout fl = (FrameLayout) findViewById(android.R.id.custom);
+
+- debug AI
+  + change order of legal moves so that best moves are tried first
+  - check recursive algorithm
+  - improve efficiency
+    - time a set of predefined moves with a watch
+    + ditch enum and make WHITE +1, EMPTY 0, BLACK -1 refactor?
+    + inBounds to final
+    + otherPlayer to final static just -player
+    - array of Boards level in size
+    + get rid of Best and cut down on parameters
+    - ArrayList
+    - try clone() of Board
+    - make mBoard[][] a final method and try various array types
+      - remove getSquare -> board
+      - 1D 64 length array vs. 2D 8x8 array [(x << 3) + y] vs. [x][y]
+    + countLegalMoves vs legalMoves
+    - cpu usage
+      willFlip
+      Board.inBounds
+      copyBoard
+      otherPlayer
+      score
+    
+    - add array of boards level deep to avoid allocations
+  - try and add some general rules
+  - ensure no threading problems
+
++ button colors etc. too?
+    Background
+    Text
+    Button Text
+    Button Background 
+      State List Drawable
+
+- tidy up preferences and state
+
+- menu icons
+  + swap players
+- player pieces
+  - wooden
+  - basic
+  - hearts
+  + tudor
+  - axis
+  + shields
+- board sizes
+  - 240 32
+  + 320 40
+  - 400 50
+  - 480 60
+  - 600 75
+-progress indicator    
+  - Popular Screen Resolutions
+    - 240x320   4/3
+    - 240x432   9/5 = 1.8
+    - 320x480   3/2
+    - 480x800   5/3
+    - 480x854   1.779
+    - 600x800   4/3
+    - 600x1024  1.71
+    - 800x1280  1.6
+    - 400x533   1.333
+    - good board sizes
+    - 240, 320, 400, 480, 600, 800
+    -  30,  40,  50,  60,  75, 100 
+  - Options
+    + Select colours or tiles
+    + Select boards
+    - Maximum AI think time
+    + Level of AI
+    + Start a new game
+    + Start a new game button
+    + undo
+    + quit (read best practices)
+    + needs an are you sure dialog
+    - some help!
+  - quit button
+  - better end of game animation
+  - Status bar/Game over you win by x points
+  - Who goes first
++ make tudor pieces shield shape
++ nicely laid out rectangle that matches the selected board and has the game information plus nice buttons
+    title
+    status (errors/game over)
+    last_move
+    score
+    progress bar
+    restart_button
+    quit_button
+    - undo_button (include go back to previous game)
+      - add to menu as well
+      - update status text fields
+      - check AI behaves itself every time. does undo need to wait if AI is working?
+        - need to clear "Computer's move" text here
+      - Consider storing sequence of moves and replaying them instead of storing boards
+      - serialize sequence of moves
+      - organize state into an object to make serialization easier.
+        - Preferences object
+        - State object
+    - replay button
+      - only after game ends
+      - needs sequence of moves stored instead of board
+- help menu item and tutorial   
+- test on the newest version of Android to see ActionBar before messing with the menu
+- Use Activity.setProgress instead
+- Use setTitle and setTitleColor
++ How to maximise the activity 
+- pieces
+  + 40px pieces redone
+  - 32px pieces
++ Launcher Icon
+  96, 72, 48, 36
+- Menu Icons
+  v9 vs.v11 vs. original. v11 is smaller because of actionbar?
+  v11 is circles 48, 36, 24, 18
+  v9 96, 72, 48, 36
+  create the non-versioned icons first
+  96, 72, 48, 36
+  96=222223
+  72=22233
+  48=22223
+  36=2233
+  LCD=2222233=96*3 = 
+  288 = 96 * 3, 72 * 4, 48 * 6, 36 * 8
+                                 
+- Screen sizes and resolutions  
+  - p32 and p40 images
+    convert p40 and p32 images to fit on new boards
+  Tablet  533 350
+  Example 320 483
+  HVGA    320 430
+          480 270
+  QVGA    376 320
+          270 427
+  320, 270
+  320  256
+  40x8 32*8
+  Make pieces 40 and 32 common denominator is 160
+  BoardView calls setImageBitmap() in constructor, which determines the image size.
+  I should move this call to onMeasure and scale or use alternate images accordingly
+  Should I scale bitmaps or choose from a range of sizes? Both
++ Add more pieces
+  + hearts
+  + plain
+  + tudor
+  + wooden
+  - axis and allies
+  + cats and dogs
+  + mice and traps
+  + rename basic to wooden and add basic
++ Add more boards
+  + Improve green board. Too dull now?
+  + Marble board
+  + Red board
+- Add menu icons
+- Test Layout on various devices and ensure it works well on all of them
+  + scaling problems on phone
+- Test AI
+  - AI: more randomness in moves
+  - If there is only one legal move, just take it!
+- Progress Bar 
+  - needs clearing at end of AI move
+  - hiding for simple ai
+  - laying out better
++ Saved state options need to stay selected during termination and orientation changes and menus should be checked correctly
+  - Difficulty
+  - Pieces Selected
+  - Board Selected
+  - Show/Hide Legal Moves
+- TODOs
++ Use an array of pieces to turn and animate this via a handler that invalidates at regular intervals
++ Rotate on a different axis
++ Move AI to a different thread
++ Find out why the Animation class is missing
++ Figure out where to store preferences 
++ Animate and rotate pieces as they flip 
++ Use the alpha channel via a Paint object to display "greyed" images for legal moves and 
+  get rid of predefined images
++ AI: level 8 too slow
++ Change layout with orientation
+multiple touch events
+  + Highlight legal moves make a menu item too.
+  - Improving layout
+  - Get board to fill space available instead of 256x256
+    ldpi, mdpi, hdpi, xhdpi
+       DisplayMetrics metrics = new DisplayMetrics();
+       getWindowManager().getDefaultDisplay().getMetrics(metrics);
+    320, 480 - Phone
+    533, 400 - Tablet
+  - Design a better 320x320 board
+- Test application on phone
++ Storing preferences 
+- Upgrade TortoiseSVN and read some more on SVN
++ Test on Phone and Gill's tablet
+- Improve graphics and make device independent
+  - Animated flips
+- Build a test application and write some tests
++ Get current state working and check in with a label
+  - *** learn a bit about SVM andfigure out how to checkin/out with labels
++ Add better AI
+  + One turn count AI
+    + scoring not working
+  + Multiturn look ahead AI
+  + Progress indicator
+    - Add show, hide and reset options
+    - Add chess clock options as well
++ Do back up onto removable device
+  + Initial Menu items
+    + start a new game
+    + select an AI "easy, level 1, level 2 etc"
+  + Game moves display "Your move (x,y)"
+                       "Android's move (x,y)"
+  + Game over display "Game Over: You win/lose by x points!"
++ Animation of moves and flips
+- Board should be as big as possible
++ Add winner checking, scoring etc
++ Add move validation
++ Add AI turns
++ Support suspend/resume
++ Create images
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/start_new" android:icon="@drawable/ic_start_new" android:title="@string/start_new"/>
+    <item android:id="@+id/swap_players" android:icon="@drawable/ic_swap_players" android:title="@string/swap_players"/>
+    <item android:id="@+id/difficulty" android:icon="@drawable/ic_difficulty" android:title="@string/difficulty"/>
+    <item android:id="@+id/change_pieces" android:icon="@drawable/ic_piece" android:title="@string/change_pieces">
+        <menu>
+    	    <group android:checkableBehavior="single">
+        		<item android:id="@+id/cp_basic" 
+        		      android:title="@string/cp_basic" android:checked="true"></item>
+            	<item android:id="@+id/cp_plain" 
+        		      android:title="@string/cp_plain" android:checked="true"></item>
+            	<item android:id="@+id/cp_hearts" 
+        		      android:title="@string/cp_hearts" android:checked="true"></item>
+            	<item android:id="@+id/cp_tudor" 
+            	      android:title="@string/cp_tudor"></item>
+            	<item android:id="@+id/cp_wwii" 
+            	      android:title="@string/cp_wwii"></item>
+            	<item android:id="@+id/cp_shield" 
+            	      android:title="@string/cp_shield"></item>
+            </group>	
+        </menu>
+    </item>
+    <item android:id="@+id/change_board" android:icon="@drawable/ic_board" android:title="@string/change_board">
+        <menu>
+    	    <group android:checkableBehavior="single">
+        		<item android:id="@+id/cb_basic" 
+        		      android:title="@string/cb_basic" android:checked="true"></item>
+            	<item android:id="@+id/cb_red" 
+        		      android:title="@string/cb_red" android:checked="true"></item>
+            	<item android:id="@+id/cb_marble" 
+            	      android:title="@string/cb_marble"></item>
+            </group>	
+        </menu>
+    </item>
+    <item android:id="@+id/show_legal" android:title="@string/show_legal" android:icon="@drawable/ic_show_legal" android:checked="false" android:checkable="true"></item>
+</menu>

@@ -1,0 +1,1 @@
+gimp-console-2.6 -i -b "(genboard %2 %2 \"p%1_board_%3.png\" \"../res/drawable/p%2_board_%3.jpg\")" -b "(gimp-quit 0)"

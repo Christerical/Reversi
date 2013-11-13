@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/contentView"
+    android:background="#2c6023"
+    >
+	<view class="com.krisapps.reversi.BoardView" android:layout_width="wrap_content" android:id="@+id/boardView" android:layout_height="wrap_content"/>
+	<LinearLayout android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:id="@+id/contentView"
+    	android:padding="4sp">
+		<TextView android:text="Reversi" 
+			android:id="@+id/titleView" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:textScaleX="1.8"
+			android:textStyle="bold|italic"
+			android:gravity="center_horizontal"
+			 />
+		<TextView android:text="TextView" android:id="@+id/statusView" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<TextView android:text="TextView" android:id="@+id/lastMoveView" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<TextView android:text="TextView" android:id="@+id/scoreView" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<FrameLayout android:layout_width="fill_parent"
+	    	         android:layout_height="wrap_content"
+    				 android:padding="4sp">
+			<ProgressBar android:id="@+id/progressView" 
+				         android:layout_width="fill_parent" 
+				         android:layout_height="wrap_content"
+				         android:visibility="invisible"	
+				         style="@android:style/Widget.ProgressBar.Horizontal" />
+		</FrameLayout>
+		<LinearLayout android:orientation="vertical"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content">
+			<Button android:text="@string/b_new_game"
+	        	android:onClick="onClickNewGame"
+	        	android:layout_weight="1"
+	    		android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" />
+			<Button android:text="@string/b_undo"
+	    	    android:onClick="onClickUndo"
+	    	    android:layout_weight="1"
+	    		android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" />
+			<view class="com.krisapps.reversi.GonerButton" 
+				android:text="@string/b_quit"
+				android:onClick="onClickQuit"
+	    	    android:layout_weight="1"
+	    		android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" />	
+			<Button android:text="@string/b_help"
+				android:onClick="onClickHelp"
+	    	    android:layout_weight="1"
+	    		android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" />	
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>
+	

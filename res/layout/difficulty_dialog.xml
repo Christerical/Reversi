@@ -1,0 +1,23 @@
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+                  android:layout_width="fill_parent" 
+                  android:layout_height="fill_parent" 
+                  android:id="@+id/linearLayout1" 
+                  android:orientation="vertical">
+        <TextView android:text="Moves computer Looks ahead (1-10):" 
+                  android:id="@+id/d_moves_ahead" 
+                  android:layout_width="wrap_content" 
+                  android:layout_height="wrap_content"/>
+        <SeekBar android:id="@+id/level_seekbar" 
+                 android:max="9"
+                 android:layout_height="wrap_content" 
+                 android:layout_width="fill_parent"/>
+		<TextView android:text="Maximum think time (2-60s):" 
+                  android:id="@+id/d_max_time" 
+                  android:layout_width="wrap_content" 
+                  android:layout_height="wrap_content"/>
+		<SeekBar android:id="@+id/time_seekbar"
+		         android:max="58"
+                 android:layout_height="wrap_content"
+		         android:layout_width="fill_parent"/>
+    </LinearLayout>

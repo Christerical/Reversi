@@ -1,0 +1,1 @@
+gimp-console-2.6 -i -b "(genpiece %1 %1 \"p240_%2.png\" \"../res/drawable/p%1_%2.png\")" -b "(gimp-quit 0)"
